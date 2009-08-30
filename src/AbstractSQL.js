@@ -1,13 +1,14 @@
 ;/**
- * @file Overview Abstract SQL
- * @author Atsushi Nagase http://ngsdev.org/1
+ * @fileOverview Abstract SQL
+ * @author <a href="http://ngsdev.org/">Atsushi Nagase </a>
+ * @license <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>
  * 
  */
  
 /**
  * @constructor
  * @param {String} table Table name
- * @param {Boolean} lower Is syntax lower.
+ * @param {Boolean} lower Is syntax lower. Default is false.
  */
 function AbstractSQL(table,lower) {
 	this.table = table;
