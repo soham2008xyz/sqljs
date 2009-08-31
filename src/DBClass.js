@@ -78,10 +78,9 @@ DBClass.detectDB = function(ins) {
 				ins.type = t;
 				db = DBClass.detectDB(ins);
 				return db;
-			} catch(e) {
-				throw Error("Database is not supported.");
-			}
+			} catch(e) {}
 		}
+		throw Error("Database is not supported.");
 		break;
 	}
 }
@@ -187,20 +186,61 @@ DBClass.Schema.prototype = {
 	 */
 	exec : function(sql,callback,bind) {
 		var schema = this;
+		var isSelect = new RegExp("^select .+","i").test(sql);
 		callback = callback || function(){};
 		bind = bind||[];
 		if(schema.db.type==DBClass.Adapter.YAHOO) {
-			
+			try {
+				var r = isSelect?schema.db.db.query(sql):schema.db.db.exec(sql);
+				if(!r) throw Error();
+				var res = new DBClass.Result(isSelect?r:null);
+				if(isSelect) {
+					var rows = r.getAll();
+					res.each = function(callback) {
+						for(var i=0;i<rows.length;i++) {
+							callback.apply(this.item(i),[i,this]);
+						}
+					}
+					res.length = rows.length;
+					res.item = function(idx) {
+						return rows[idx];
+					}
+				}
+				res.success = true;
+				res.sql = sql;
+				callback.apply(res);
+				return;
+			} catch(err) {
+				var res = new DBClass.Result(null);
+				res.success = false;
+				res.sql = sql;
+				res.error = err;
+				callback.apply(res);
+				return;
+			}
+			return;
 		} else {
 			schema.db.db.transaction(function(tx){
 				tx.executeSql(sql,bind,function(tx,r){
-					var res = new DBClass.Result(r.rows&& new RegExp("^select .+","i").test(sql)?r:null);
+					var res = new DBClass.Result(r.rows&&isSelect?r:null);
 					res.success = true;
 					res.sql = sql;
+					if(isSelect) {
+						var rows = r.rows;
+						res.each = function(callback) {
+							for(var i=0;i<rows.length;i++) {
+								callback.apply(rows.item(i),[i,this]);
+							}
+						}
+						res.length = rows.length;
+						res.item = function(idx) {
+							return rows.item(idx);
+						}
+					}
 					callback.apply(res);
 				},function(tx,err){
 					var res = new DBClass.Result(null);
-					res.success = true;
+					res.success = false;
 					res.sql = sql;
 					res.error = err;
 					callback.apply(res);
@@ -310,31 +350,13 @@ DBClass.Schema.prototype = {
  * @constructor
  * @param {SQLResultSet} resultSet
  */
-DBClass.Result = function(resultSet) {
-	if(resultSet) {
-		this.resultSet = resultSet;
-		var rows = resultSet.rows;
-		/** @ignore */
-		this.each = function(callback) {
-			for(var i=0;i<rows.length;i++) {
-				callback.apply(rows.item(i),[i,this]);
-			}
-		}
-		/** @ignore */
-		this.length = rows.length;
-		/** @ignore */
-		this.item = function(idx) {
-			return rows.item(idx);
-		}
-	}
+DBClass.Result = function() {
 }
 
 /**
  * @class
  */
 DBClass.Result.prototype = {
-	/** @private */
-	resultSet : null,
 	/** @private */
 	sql : "",
 	/**

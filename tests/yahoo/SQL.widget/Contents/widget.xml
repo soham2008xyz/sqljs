@@ -6,5 +6,5 @@
 	<author name="Atsushi Nagase" organization="LittleApps Inc." href="http://ngsdev.org/"/>
 	<copyright>Apache License 2.0 (C)2009 Atsushi Nagase</copyright>
 	<description></description>
-	<platform minVersion="4.0" />
+	<platform minVersion="4.5" />
 </metadata>
