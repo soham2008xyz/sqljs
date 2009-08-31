@@ -315,7 +315,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/AbstractSQL.html#createTable">createTable</a></b>(fields)
+								<div class="fixedFont"><b><a href="../symbols/AbstractSQL.html#createTable">createTable</a></b>(fields, ifNotExists, temporary)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -333,7 +333,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/AbstractSQL.html#insert">insert</a></b>(data, on)
+								<div class="fixedFont"><b><a href="../symbols/AbstractSQL.html#insert">insert</a></b>(data, onConflict)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -380,8 +380,6 @@ ul.inheritsList
 				
 				
 				
-			
-<!-- ============================== events summary ======================== -->
 			
 
 <!-- ============================== constructor details ==================== -->		
@@ -493,7 +491,7 @@ ul.inheritsList
 								<dd></dd>
 							
 								<dt>
-									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Where.html">AbstractSQL.Where</a>|AbstractSQL.WhereList}</span> <b>where</b>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Where.html#constructor">AbstractSQL.Where</a>|AbstractSQL.WhereList}</span> <b>where</b>
 									
 								</dt>
 								<dd></dd>
@@ -520,7 +518,7 @@ ul.inheritsList
 					<div class="fixedFont">
 					
 					<span class="light">{String}</span>
-					<b>createTable</b>(fields)
+					<b>createTable</b>(fields, ifNotExists, temporary)
 					
 					</div>
 					<div class="description">
@@ -540,6 +538,18 @@ ul.inheritsList
 									
 								</dt>
 								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Boolean}</span> <b>ifNotExists</b>
+									
+								</dt>
+								<dd><q>IF NOT EXISTS</q>. Default is false.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Boolean}</span> <b>temporary</b>
+									
+								</dt>
+								<dd><q>TEMPORARY</q>. Default is false.</dd>
 							
 							</dl>
 						
@@ -606,7 +616,7 @@ ul.inheritsList
 					<div class="fixedFont">
 					
 					<span class="light">{String}</span>
-					<b>insert</b>(data, on)
+					<b>insert</b>(data, onConflict)
 					
 					</div>
 					<div class="description">
@@ -628,10 +638,10 @@ ul.inheritsList
 								<dd></dd>
 							
 								<dt>
-									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Conflict.html">AbstractSQL.Conflict</a>}</span> <b>on</b>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Conflict.html#constructor">AbstractSQL.Conflict</a>}</span> <b>onConflict</b>
 									
 								</dt>
-								<dd>conflict</dd>
+								<dd></dd>
 							
 							</dl>
 						
@@ -671,7 +681,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Where.html">AbstractSQL.Where</a>|AbstractSQL.WhereList}</span> <b>where</b>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Where.html#constructor">AbstractSQL.Where</a>|AbstractSQL.WhereList}</span> <b>where</b>
 									
 								</dt>
 								<dd></dd>
@@ -720,7 +730,7 @@ ul.inheritsList
 								<dd></dd>
 							
 								<dt>
-									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Where.html">AbstractSQL.Where</a>|AbstractSQL.WhereList}</span> <b>where</b>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Where.html#constructor">AbstractSQL.Where</a>|AbstractSQL.WhereList}</span> <b>where</b>
 									
 								</dt>
 								<dd></dd>
@@ -732,7 +742,7 @@ ul.inheritsList
 								<dd></dd>
 							
 								<dt>
-									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Order.html">AbstractSQL.Order</a>}</span> <b>order</b>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Order.html#constructor">AbstractSQL.Order</a>}</span> <b>order</b>
 									
 								</dt>
 								<dd></dd>
@@ -813,13 +823,13 @@ ul.inheritsList
 								<dd></dd>
 							
 								<dt>
-									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Where.html">AbstractSQL.Where</a>|AbstractSQL.WhereList}</span> <b>where</b>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Where.html#constructor">AbstractSQL.Where</a>|AbstractSQL.WhereList}</span> <b>where</b>
 									
 								</dt>
 								<dd></dd>
 							
 								<dt>
-									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Conflict.html">AbstractSQL.Conflict</a>}</span> <b>on</b>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Conflict.html#constructor">AbstractSQL.Conflict</a>}</span> <b>on</b>
 									
 								</dt>
 								<dd>conflict</dd>
@@ -844,17 +854,13 @@ ul.inheritsList
 				
 			
 			
-<!-- ============================== event details ========================= -->		
-			
-			
 			<hr />
 		</div>
-
 		
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.3.0 on Sun Aug 30 2009 22:34:06 GMT+0900 (JST)
+			Documentation generated by <a href="http://www.jsdoctoolkit.org/" target="_blank">JsDoc Toolkit</a> 2.0.2 on Mon Aug 31 2009 09:16:07 GMT+0900 (JST)
 		</div>
 	</body>
 </html>

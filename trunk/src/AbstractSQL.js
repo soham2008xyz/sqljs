@@ -32,24 +32,25 @@ AbstractSQL.prototype = {
 	lower : false,
 	/**
 	 * @param {Array.&lt;AbstractSQL.Field&gt;} fields 
+	 * @param {Boolean} ifNotExists <q>IF NOT EXISTS</q>. Default is false.
+	 * @param {Boolean} temporary <q>TEMPORARY</q>. Default is false.
 	 * @returns {String} SQL String
 	 */
-	createTable : function(fields) {
-		var sql = [];
+	createTable : function(fields,ifNotExists,temporary) {
+		var sql = [AbstractSQL.util.sqlcase("create",this.lower)];
+		if(temporary) sql.push("temporary");
+		sql.push(AbstractSQL.util.sqlcase("table",this.lower))
+		if(ifNotExists) sql.push(AbstractSQL.util.sqlcase("if not exists",this.lower));
+		sql.push(this.table);
+		var fld = [];
 		for(var i in fields) {
-			var f = fields[i];
-			if(!f.key||!f.type) continue;
-			var s = f.key+" "+AbstractSQL.util.sqlcase(f.type,this.lower);
-			if(f.length) s+=AbstractSQL.util.parenthesis(f.length);
-			if(f.primary) s+=AbstractSQL.util.sqlcase(" primary key",this.lower);
-			if(f.order) s+=AbstractSQL.util.sqlcase(" "+f.order,this.lower);
-			sql.push(s);
+			fields[i].lower = this.lower;
+			var s = fields[i].toString();
+			if(!s) continue;
+			fld.push(s);
 		}
-		sql = [
-			AbstractSQL.util.sqlcase("create table",this.lower),
-			this.table,
-			AbstractSQL.util.parenthesis(sql)
-		].join(" ")+";";
+		sql.push(AbstractSQL.util.parenthesis(fld));
+		sql = sql.join(" ")+";";
 		this.sql.push(sql);
 		return sql;
 	},
@@ -90,7 +91,7 @@ AbstractSQL.prototype = {
 	},
 	/**
 	 * @param {Map.&lt;String,String&gt;} data
-	 * @param {AbstractSQL.Conflict} on conflict
+	 * @param {AbstractSQL.Conflict} onConflict
 	 * @returns {String} SQL String
 	 */
 	insert : function(obj,onConflict) {
@@ -239,15 +240,108 @@ AbstractSQL.util = {
  * @param {String} key
  * @param {AbstractSQL.FieldType} type
  * @param {int} length 0-0xff
- * @param {Boolean} primary 
- * @param {AbstractSQL.Order} order 
+ * @param {Boolean} primary PRIMARY KEY
+ * @param {AbstractSQL.Order} order ASC|DESC
+ * @param {AbstractSQL.Conflict} keyOnConflict
+ * @param {Boolean} autoIncrement AUTOINCREMENT
+ * @param {Boolean} notNull NOT NULL
+ * @param {AbstractSQL.Conflict} notNullOnConflict
+ * @param {Boolean} unique UNIQUE
+ * @param {AbstractSQL.Conflict} uniqueNullOnConflict
  */
-AbstractSQL.Field = function(key,type,length,primary,order) {
+AbstractSQL.Field = function(
+	key,type,length,
+	primary,order,keyOnConflict,autoIncrement,
+	notNull,notNullOnConflict,
+	unique,uniqueOnConflict
+) {
 	this.key = key;
 	this.type = type;
+	this.length = length;
 	this.primary = primary?true:false;
 	this.order = new RegExp("^("+AbstractSQL.Order.ASC+"|"+AbstractSQL.Order.DESC+")$","i").test(order)?order:null;
-	this.length = length;
+	this.keyOnConflict = keyOnConflict;
+	this.autoIncrement = autoIncrement;
+	this.notNull = notNull;
+	this.notNullOnConflict = notNullOnConflict;
+	this.unique = unique;
+	this.uniqueOnConflict = uniqueOnConflict;
+}
+
+AbstractSQL.Field.prototype = {
+	/**
+	 * @type String
+	 */
+	key : "",
+	/**
+	 * @type AbstractSQL.FieldType
+	 */
+	type : "",
+	/**
+	 * @type int
+	 */
+	length : 0,
+	/**
+	 * @type Boolean PRIMARY KEY
+	 */
+	primary : false,
+	/**
+	 * @type AbstractSQL.Order
+	 */
+	order : null,
+	/**
+	 * @type AbstractSQL.Conflict
+	 */
+	keyOnConflict : "",
+	/**
+	 * @type Boolean
+	 */
+	autoIncrement : false,
+	/**
+	 * @type notNull
+	 */
+	notNull : false,
+	/**
+	 * @type AbstractSQL.Conflict
+	 */
+	notNullOnConflict : false,
+	/**
+	 * @type Boolean
+	 */
+	unique : false,
+	/**
+	 * @type AbstractSQL.Conflict
+	 */
+	uniqueOnConflict : false,
+	/**
+	 * @type Boolean
+	 * @default false
+	 */
+	lower : false,
+	/**
+	 * @returns SQL String
+	 * @returns String
+	 */
+	toString : function() {
+		var t = AbstractSQL.util.sqlcase(this.type,this.lower);
+		if(this.length) t+=AbstractSQL.util.parenthesis(this.length);
+		var s = [this.key,t];
+		if(this.primary) {
+			s.push(AbstractSQL.util.sqlcase("primary key",this.lower));
+			if(this.order) s.push(AbstractSQL.util.sqlcase(this.order,this.lower));
+			if(this.keyOnConflict) s.push(AbstractSQL.util.sqlcase("on conflict "+this.keyOnConflict,this.lower));
+			if(this.autoIncrement) s.push(AbstractSQL.util.sqlcase("autoinclement"))
+		}
+		if(this.notNull) {
+			s.push(AbstractSQL.util.sqlcase("not null"));
+			if(this.notNullOnConflict) s.push(AbstractSQL.util.sqlcase("on conflict "+this.notNullOnConflict,this.lower));
+		}
+		if(this.unique) {
+			s.push(AbstractSQL.util.sqlcase("unique"));
+			if(this.uniqueOnConflict) s.push(AbstractSQL.util.sqlcase("on conflict "+this.uniqueOnConflict,this.lower));
+		}
+		return s.join(" ");
+	}
 }
 
 /**
@@ -264,6 +358,18 @@ AbstractSQL.Where = function(key,value,operator) {
 
 /* @class */
 AbstractSQL.Where.prototype = {
+	/**
+	 * @type String
+	 */
+	key : "",
+	/**
+	 * @type String
+	 */
+	value : "",
+	/**
+	 * @type AbstractSQL.Operator
+	 */
+	operator : "",
 	/**
 	 * @type Boolean
 	 * @default false
@@ -294,6 +400,10 @@ AbstractSQL.WhereLest = function(logic,list) {
 
 /* @class */
 AbstractSQL.WhereLest.prototype = {
+	/**
+	 * @type Array&lt;AbstractSQL.Where|AbstractSQL.WhereList&gt;
+	 */
+	list : [],
 	/**
 	 * @type String
 	 * @default AbstractSQL.Logic.OR
