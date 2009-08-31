@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - AbstractSQL.Logic</title>
+		<title>JsDoc Reference - DBClass.Result</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -228,7 +228,7 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Namespace AbstractSQL.Logic
+				Class DBClass.Result
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -238,14 +238,14 @@ ul.inheritsList
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/AbstractSQL.js.html">AbstractSQL.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/DBClass.js.html">DBClass.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class AbstractSQL.Logic.">
-				<caption>Namespace Summary</caption>
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class DBClass.Result.">
+				<caption>Class Summary</caption>
 				<thead>
 					<tr>
 						<th scope="col">Constructor Attributes</th>
@@ -257,9 +257,9 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/AbstractSQL.Logic.html#constructor">AbstractSQL.Logic</a></b>
+								<b><a href="../symbols/DBClass.Result.html#constructor">DBClass.Result</a></b>(resultSet)
 							</div>
-							<div class="description"></div>
+							<div class="description">Called from only DBClass#select</div>
 						</td>
 					</tr>
 				</tbody>
@@ -270,7 +270,7 @@ ul.inheritsList
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class AbstractSQL.Logic.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class DBClass.Result.">
 					<caption>Field Summary</caption>
 					<thead>
 						<tr>
@@ -281,20 +281,30 @@ ul.inheritsList
 					<tbody>
 					
 						<tr>
-							<td class="attributes">&lt;static&gt; &lt;constant&gt; &nbsp;</td>
+							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
-								AbstractSQL.Logic.<b><a href="../symbols/AbstractSQL.Logic.html#.AND">AND</a></b>
+								<b><a href="../symbols/DBClass.Result.html#error">error</a></b>
 								</div>
 								<div class="description"></div>
 							</td>
 						</tr>
 					
 						<tr>
-							<td class="attributes">&lt;static&gt; &lt;constant&gt; &nbsp;</td>
+							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
-								AbstractSQL.Logic.<b><a href="../symbols/AbstractSQL.Logic.html#.OR">OR</a></b>
+								<b><a href="../symbols/DBClass.Result.html#length">length</a></b>
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/DBClass.Result.html#success">success</a></b>
 								</div>
 								<div class="description"></div>
 							</td>
@@ -309,6 +319,42 @@ ul.inheritsList
 
 <!-- ============================== methods summary ======================== -->
 			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class DBClass.Result.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DBClass.Result.html#each">each</a></b>(func)
+								</div>
+								<div class="description">Called each items.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DBClass.Result.html#item">item</a></b>(idx)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
 <!-- ============================== events summary ======================== -->
 			
 
@@ -316,21 +362,32 @@ ul.inheritsList
 			
 			<div class="details"><a name="constructor"> </a>
 				<div class="sectionTitle">
-					Namespace Detail
+					Class Detail
 				</div>
 				
 				<div class="fixedFont">
-						<b>AbstractSQL.Logic</b>
+						<b>DBClass.Result</b>(resultSet)
 				</div>
 				
 				<div class="description">
-					
+					Called from only DBClass#select
 					
 				</div>
 				
 				
 				
 				
+					
+						<dl class="detailList">
+						<dt class="heading">Parameters:</dt>
+						
+							<dt>
+								<span class="light fixedFont">{SQLResultSet}</span>  <b>resultSet</b>
+								
+							</dt>
+								<dd></dd>
+						
+						</dl>
 					
 					
 					
@@ -348,11 +405,11 @@ ul.inheritsList
 					Field Detail
 				</div>
 				
-					<a name=".AND"> </a>
-					<div class="fixedFont">&lt;static&gt; &lt;constant&gt; 
+					<a name="error"> </a>
+					<div class="fixedFont">
 					
-					
-					<span class="light">AbstractSQL.Logic.</span><b>AND</b>
+					<span class="light">{Error}</span>
+					<b>error</b>
 					
 					</div>
 					<div class="description">
@@ -370,11 +427,33 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name=".OR"> </a>
-					<div class="fixedFont">&lt;static&gt; &lt;constant&gt; 
+					<a name="length"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{int}</span>
+					<b>length</b>
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
 					
 					
-					<span class="light">AbstractSQL.Logic.</span><b>OR</b>
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="success"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Boolean}</span>
+					<b>success</b>
 					
 					</div>
 					<div class="description">
@@ -395,6 +474,83 @@ ul.inheritsList
 			
 
 <!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="each"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>each</b>(func)
+					
+					</div>
+					<div class="description">
+						Called each items.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>func</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="item"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>item</b>(idx)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{int}</span> <b>idx</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					
+				
 			
 			
 <!-- ============================== event details ========================= -->		

@@ -2,7 +2,7 @@
  * @fileOverview Abstract SQL
  * @author <a href="http://ngsdev.org/">Atsushi Nagase </a>
  * @license <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>
- * 
+ * @global AbstractSQL
  */
  
 /**
@@ -99,11 +99,11 @@ AbstractSQL.prototype = {
 	 * @param {AbstractSQL.Conflict} onConflict
 	 * @returns {String} SQL String
 	 */
-	insert : function(obj,onConflict) {
-		var fields = [], data = [];
-		for(var i in obj) {
+	insert : function(data,onConflict) {
+		var fields = [], datas = [];
+		for(var i in data) {
 			fields.push(i);
-			data.push(obj[i]);
+			datas.push(data[i]);
 		}
 		var sql = [
 			AbstractSQL.util.sqlcase("insert",this.lower),
@@ -120,7 +120,7 @@ AbstractSQL.prototype = {
 			AbstractSQL.util.sqlcase("into",this.lower),
 			this.table,
 			AbstractSQL.util.parenthesis(fields),
-			AbstractSQL.util.sqlcase("values",this.lower)+AbstractSQL.util.quotize(data)
+			AbstractSQL.util.sqlcase("values",this.lower)+AbstractSQL.util.quotize(datas)
 		]);
 		sql = sql.join(" ")+";";
 		this.sql.push(sql);
@@ -166,10 +166,7 @@ AbstractSQL.prototype = {
 	 */
 	remove : function(where) {
 		var val = [];
-		var sql = [
-			AbstractSQL.util.sqlcase("delete from",this.lower),
-			this.table,
-		];
+		var sql = [AbstractSQL.util.sqlcase("delete from",this.lower), this.table];
 		sql = this.appendWhere(sql,where);
 		sql = sql.join(" ")+";";
 		this.sql.push(sql);
@@ -217,10 +214,9 @@ AbstractSQL.prototype = {
 			where instanceof AbstractSQL.WhereLest
 		) {
 			where.lower = this.lower;
-			return where.toString();
+			return sql.concat([AbstractSQL.util.sqlcase("where",this.lower),where]);
 		}
-		
-		return where?sql.concat([AbstractSQL.util.sqlcase("where",this.lower),where]):sql;
+		return where&&where.length?sql.concat([AbstractSQL.util.sqlcase("where",this.lower),where]):sql;
 	}
 }
 
@@ -447,7 +443,6 @@ AbstractSQL.WhereLest.prototype = {
 			var w = this.list[i];
 			if(!w instanceof AbstractSQL.Where&&!w instanceof AbstractSQL.WhereList) continue;
 			sql.push(w);
-		
 		}
 		sql = AbstractSQL.util.parenthesis(
 			sql.join(" "+AbstractSQL.util.sqlcase(this.logic,this.lower)+" ")
