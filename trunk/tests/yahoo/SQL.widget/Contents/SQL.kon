@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?konfabulator xml-strict="true"?>
+<widget>
+	<script src="Scripts/AbstractSQL.js" charset="utf-8" />
+	<script src="Scripts/DBClass.js" charset="utf-8" />
+	<settings>
+		<setting name="debug" value="on"/>
+	</settings>
+	<window name="main" level="normal">
+		
+	</window>
+</widget>
+
