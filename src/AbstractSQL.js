@@ -354,7 +354,7 @@ AbstractSQL.Field.prototype = {
 			s.push(AbstractSQL.util.sqlcase("primary key",this.lower));
 			if(this.order) s.push(AbstractSQL.util.sqlcase(this.order,this.lower));
 			if(this.keyOnConflict) s.push(AbstractSQL.util.sqlcase("on conflict "+this.keyOnConflict,this.lower));
-			if(this.autoIncrement) s.push(AbstractSQL.util.sqlcase("autoinclement"))
+			if(this.autoIncrement) s.push(AbstractSQL.util.sqlcase("autoincrement"))
 		}
 		if(this.notNull) {
 			s.push(AbstractSQL.util.sqlcase("not null"));
