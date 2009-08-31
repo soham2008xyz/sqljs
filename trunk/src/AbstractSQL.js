@@ -21,6 +21,7 @@ function AbstractSQL(table,lower) {
  */
 AbstractSQL.prototype = {
 	/**
+	 * Stringify all SQL lines.
 	 * @returns {String} SQL String
 	 */
 	toString : function() {
@@ -31,6 +32,7 @@ AbstractSQL.prototype = {
 	/** Is syntax lower case. */
 	lower : false,
 	/**
+	 * CREATE TABLE Syntax
 	 * @param {Array.&lt;AbstractSQL.Field&gt;} fields 
 	 * @param {Boolean} ifNotExists <q>IF NOT EXISTS</q>. Default is false.
 	 * @param {Boolean} temporary <q>TEMPORARY</q>. Default is false.
@@ -55,6 +57,7 @@ AbstractSQL.prototype = {
 		return sql;
 	},
 	/**
+	 * DROP TABLE Syntax
 	 * @param {Boolean} ifExists 
 	 * @returns {String} SQL String
 	 */
@@ -68,6 +71,7 @@ AbstractSQL.prototype = {
 		
 	},
 	/**
+	 * SELECT Syntax
 	 * @param {Array.&lt;String&gt;} fields
 	 * @param {AbstractSQL.Where|AbstractSQL.WhereList} where
 	 * @param {int} limit
@@ -90,6 +94,7 @@ AbstractSQL.prototype = {
 		return sql;
 	},
 	/**
+	 * INSERT Syntax
 	 * @param {Map.&lt;String,String&gt;} data
 	 * @param {AbstractSQL.Conflict} onConflict
 	 * @returns {String} SQL String
@@ -122,6 +127,7 @@ AbstractSQL.prototype = {
 		return sql;
 	},
 	/**
+	 * UPDATE Syntax
 	 * @param {Map.&lt;String,String&gt;} data
 	 * @param {AbstractSQL.Where|AbstractSQL.WhereList} where
 	 * @param {AbstractSQL.Conflict} on conflict
@@ -154,7 +160,7 @@ AbstractSQL.prototype = {
 		return sql;
 	},
 	/**
-	 * DELETE
+	 * DELETE Syntax
 	 * @param {AbstractSQL.Where|AbstractSQL.WhereList} where
 	 * @returns {String} SQL String
 	 */
@@ -170,6 +176,7 @@ AbstractSQL.prototype = {
 		return sql;
 	},
 	/**
+	 * SELECT COUNT Syntax
 	 * @param {String} key
 	 * @param {AbstractSQL.Where|AbstractSQL.WhereList} where
 	 * @returns {String} SQL String
@@ -183,6 +190,23 @@ AbstractSQL.prototype = {
 		];
 		sql = this.appendWhere(sql,where);
 		sql = sql.join(" ")+";";
+		this.sql.push(sql);
+		return sql;
+	},
+	/**
+	 * Comment starts with <q>--</q> Syntax
+	 * @param {String|Array} comment
+	 * @returns {String} SQL String
+	 */
+	comment : function(comment) {
+		if(typeof comment == "string") comment = comment.split(/\n/);
+		else if(comment instanceof Array) comment; // Do nothing.
+		else return "";
+		var sql = [];
+		for(var i in comment) {
+			sql.push("-- "+comment[i]);
+		}
+		sql = sql.join("\n");
 		this.sql.push(sql);
 		return sql;
 	},
