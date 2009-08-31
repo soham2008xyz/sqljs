@@ -6,17 +6,22 @@
 	<meta http-equiv="content-script-type" content="text/javascript" />
 	<meta http-equiv="content-style-type" content="text/css" />
 	<script type="text/javascript" src="../src/AbstractSQL.js"></script>
+	<link rel="stylesheet" type="text/css" href="./_assets/default.css" />
+	<script type="text/javascript" src="./_assets/highlight.pack.js"></script>
 
 	<title>AbstractSQL.js test</title>
 	<script type="text/javascript">
 		var form,code,output,db;
+		hljs.tabReplace = '    ';
+		hljs.initHighlightingOnLoad();
 		function init() {
 			form = document.getElementById("testform");
 			code = form.code;
-			output = form.output;
+			output = document.getElementById("output-pre");
 		}
 		function outputText(text) {
-			output.value = (text||"").toString();
+			document.getElementById("output-div").innerHTML = "<div><pre class=\"language-sql\" id=\"output-pre\">"+(text||"").toString()+"</pre></div>";
+			hljs.highlightBlock(document.getElementById("output-pre"),"  ");
 		}
 		function onSubmit() {
 			try{
@@ -32,17 +37,17 @@
 <body onload="init();">
 <form onsubmit="onSubmit();return false;" id="testform">
 <div>
-<textarea name="code" style="width:40%;height:300px;float:left;">
+<textarea name="code" style="width:44%;height:300px;float:left;">
 var sql = new AbstractSQL("test");
 
 sql.createTable([
 	new AbstractSQL.Field("id",AbstractSQL.FieldType.INTEGER,10,true),
 	new AbstractSQL.Field("name",AbstractSQL.FieldType.TEXT,255,false)
 ]);
-
+sql.comment("insert");
 sql.insert({ "id":101, "name":"長瀬敦史" });
 sql.insert({ "id":100, "name":"長瀬敦史" },AbstractSQL.Conflict.REPLACE);
-
+sql.comment("insert");
 sql.count("id",[
 	new AbstractSQL.Where("name","長%",AbstractSQL.Operator.LIKE)
 ]);
@@ -62,8 +67,7 @@ sql.select(["id","name"],[
 
 </textarea>
 <p style="padding-top:132px;width:5%;float:left;margin:0;text-align:center;"><input type="submit" value="eval &raquo;" /></p>
-<textarea name="output" style="width:40%;height:300px;float:left;">
-</textarea>
+<div style="width:44%;height:300px;float:left;display:block;overflow:auto;" id="output-div"></div>
 </div>
 </form>
 </body>

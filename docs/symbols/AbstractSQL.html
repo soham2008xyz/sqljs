@@ -306,9 +306,18 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/AbstractSQL.html#comment">comment</a></b>(comment)
+								</div>
+								<div class="description">Comment starts with <q>--</q> Syntax</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/AbstractSQL.html#count">count</a></b>(key, where)
 								</div>
-								<div class="description"></div>
+								<div class="description">SELECT COUNT Syntax</div>
 							</td>
 						</tr>
 					
@@ -317,7 +326,7 @@ ul.inheritsList
 							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/AbstractSQL.html#createTable">createTable</a></b>(fields, ifNotExists, temporary)
 								</div>
-								<div class="description"></div>
+								<div class="description">CREATE TABLE Syntax</div>
 							</td>
 						</tr>
 					
@@ -326,7 +335,7 @@ ul.inheritsList
 							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/AbstractSQL.html#dropTable">dropTable</a></b>(ifExists)
 								</div>
-								<div class="description"></div>
+								<div class="description">DROP TABLE Syntax</div>
 							</td>
 						</tr>
 					
@@ -335,7 +344,7 @@ ul.inheritsList
 							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/AbstractSQL.html#insert">insert</a></b>(data, onConflict)
 								</div>
-								<div class="description"></div>
+								<div class="description">INSERT Syntax</div>
 							</td>
 						</tr>
 					
@@ -344,7 +353,7 @@ ul.inheritsList
 							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/AbstractSQL.html#remove">remove</a></b>(where)
 								</div>
-								<div class="description">DELETE</div>
+								<div class="description">DELETE Syntax</div>
 							</td>
 						</tr>
 					
@@ -353,7 +362,7 @@ ul.inheritsList
 							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/AbstractSQL.html#select">select</a></b>(fields, where, limit, order)
 								</div>
-								<div class="description"></div>
+								<div class="description">SELECT Syntax</div>
 							</td>
 						</tr>
 					
@@ -362,7 +371,7 @@ ul.inheritsList
 							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/AbstractSQL.html#toString">toString</a></b>()
 								</div>
-								<div class="description"></div>
+								<div class="description">Stringify all SQL lines.</div>
 							</td>
 						</tr>
 					
@@ -371,7 +380,7 @@ ul.inheritsList
 							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/AbstractSQL.html#update">update</a></b>(data, where, on)
 								</div>
-								<div class="description"></div>
+								<div class="description">UPDATE Syntax</div>
 							</td>
 						</tr>
 					
@@ -380,6 +389,8 @@ ul.inheritsList
 				
 				
 				
+			
+<!-- ============================== events summary ======================== -->
 			
 
 <!-- ============================== constructor details ==================== -->		
@@ -465,6 +476,49 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
+					<a name="comment"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{String}</span>
+					<b>comment</b>(comment)
+					
+					</div>
+					<div class="description">
+						Comment starts with <q>--</q> Syntax
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String|Array}</span> <b>comment</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{String}</span> SQL String</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
 					<a name="count"> </a>
 					<div class="fixedFont">
 					
@@ -473,7 +527,7 @@ ul.inheritsList
 					
 					</div>
 					<div class="description">
-						
+						SELECT COUNT Syntax
 						
 						
 					</div>
@@ -491,7 +545,7 @@ ul.inheritsList
 								<dd></dd>
 							
 								<dt>
-									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Where.html#constructor">AbstractSQL.Where</a>|AbstractSQL.WhereList}</span> <b>where</b>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Where.html">AbstractSQL.Where</a>|AbstractSQL.WhereList}</span> <b>where</b>
 									
 								</dt>
 								<dd></dd>
@@ -522,7 +576,7 @@ ul.inheritsList
 					
 					</div>
 					<div class="description">
-						
+						CREATE TABLE Syntax
 						
 						
 					</div>
@@ -577,7 +631,7 @@ ul.inheritsList
 					
 					</div>
 					<div class="description">
-						
+						DROP TABLE Syntax
 						
 						
 					</div>
@@ -620,7 +674,7 @@ ul.inheritsList
 					
 					</div>
 					<div class="description">
-						
+						INSERT Syntax
 						
 						
 					</div>
@@ -638,7 +692,7 @@ ul.inheritsList
 								<dd></dd>
 							
 								<dt>
-									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Conflict.html#constructor">AbstractSQL.Conflict</a>}</span> <b>onConflict</b>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Conflict.html">AbstractSQL.Conflict</a>}</span> <b>onConflict</b>
 									
 								</dt>
 								<dd></dd>
@@ -669,7 +723,7 @@ ul.inheritsList
 					
 					</div>
 					<div class="description">
-						DELETE
+						DELETE Syntax
 						
 						
 					</div>
@@ -681,7 +735,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Where.html#constructor">AbstractSQL.Where</a>|AbstractSQL.WhereList}</span> <b>where</b>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Where.html">AbstractSQL.Where</a>|AbstractSQL.WhereList}</span> <b>where</b>
 									
 								</dt>
 								<dd></dd>
@@ -712,7 +766,7 @@ ul.inheritsList
 					
 					</div>
 					<div class="description">
-						
+						SELECT Syntax
 						
 						
 					</div>
@@ -730,7 +784,7 @@ ul.inheritsList
 								<dd></dd>
 							
 								<dt>
-									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Where.html#constructor">AbstractSQL.Where</a>|AbstractSQL.WhereList}</span> <b>where</b>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Where.html">AbstractSQL.Where</a>|AbstractSQL.WhereList}</span> <b>where</b>
 									
 								</dt>
 								<dd></dd>
@@ -742,7 +796,7 @@ ul.inheritsList
 								<dd></dd>
 							
 								<dt>
-									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Order.html#constructor">AbstractSQL.Order</a>}</span> <b>order</b>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Order.html">AbstractSQL.Order</a>}</span> <b>order</b>
 									
 								</dt>
 								<dd></dd>
@@ -773,7 +827,7 @@ ul.inheritsList
 					
 					</div>
 					<div class="description">
-						
+						Stringify all SQL lines.
 						
 						
 					</div>
@@ -805,7 +859,7 @@ ul.inheritsList
 					
 					</div>
 					<div class="description">
-						
+						UPDATE Syntax
 						
 						
 					</div>
@@ -823,13 +877,13 @@ ul.inheritsList
 								<dd></dd>
 							
 								<dt>
-									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Where.html#constructor">AbstractSQL.Where</a>|AbstractSQL.WhereList}</span> <b>where</b>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Where.html">AbstractSQL.Where</a>|AbstractSQL.WhereList}</span> <b>where</b>
 									
 								</dt>
 								<dd></dd>
 							
 								<dt>
-									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Conflict.html#constructor">AbstractSQL.Conflict</a>}</span> <b>on</b>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Conflict.html">AbstractSQL.Conflict</a>}</span> <b>on</b>
 									
 								</dt>
 								<dd>conflict</dd>
@@ -854,13 +908,17 @@ ul.inheritsList
 				
 			
 			
+<!-- ============================== event details ========================= -->		
+			
+			
 			<hr />
 		</div>
+
 		
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://www.jsdoctoolkit.org/" target="_blank">JsDoc Toolkit</a> 2.0.2 on Mon Aug 31 2009 09:16:07 GMT+0900 (JST)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.3.0 on Mon Aug 31 2009 14:08:15 GMT+0900 (JST)
 		</div>
 	</body>
 </html>
