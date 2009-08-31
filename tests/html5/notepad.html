@@ -59,6 +59,8 @@ function init() {
 		if(!s) return alert("Failed to initialize.");
 		schema.select(["id","title","text","added","modified"],null,null,null,function(s){
 			console.log(this.sql);
+			if(!this.length)
+				return newNote();
 			this.each(function(i){ appendNote(this); });
 		});
 		initialized = true;
@@ -80,7 +82,12 @@ function generateId(callback) {
 function newNote() {
 	if(!initialized) return;
 	generateId(function(id){
-		var obj = { id:id, added:new Date().toString(),modified:new Date().toString() };
+		var obj = {
+			id:id,
+			title:"Untitled",
+			text:unescape("%u3000%u3000%20%u3000%u3000%u3000%uFF0F%uFFE3%uFFE3%uFFE3%uFF3C%0A%u3000%u3000%u3000%u3000%uFF0F%u3000%u2500%u3000%20%u3000%20%u2500%20%uFF3C%0A%u3000%u3000%20%uFF0F%u3000%20%uFF08%u25CF%uFF09%20%u3000%uFF08%u25CF%uFF09%u3000%20%uFF3C.%0A%u3000%u3000%20%7C%u3000%u3000%u3000%u3000%uFF08__%u4EBA__%uFF09%u3000%u3000%u3000%u3000%7C%0A%u3000%u3000%20%uFF3C%u3000%u3000%u3000%20%uFF40%20%u2312%B4%u3000%u3000%u3000%u3000%uFF0F%0A%u3000%u3000%20%uFF0F%20%u3000%20%u3000%20%u3000%u3000%u3000%u3000%20%u3000%20%u3000%20%uFF3C"),
+			added:new Date().toString(),
+			modified:new Date().toString() };
 		schema.insert(obj,null,function(){
 			console.log(this.sql);
 			if(this.error) return alert(this.error.message);
