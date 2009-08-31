@@ -11,13 +11,13 @@
 
 	<title>AbstractSQL.js test</title>
 	<script type="text/javascript">
-		var form,code,output,db;
+		var form,code,db;
 		hljs.tabReplace = '    ';
 		hljs.initHighlightingOnLoad();
 		function init() {
 			form = document.getElementById("testform");
 			code = form.code;
-			output = document.getElementById("output-pre");
+			onSubmit();
 		}
 		function outputText(text) {
 			document.getElementById("output-div").innerHTML = "<div><pre class=\"language-sql\" id=\"output-pre\">"+(text||"").toString()+"</pre></div>";

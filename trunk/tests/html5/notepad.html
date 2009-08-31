@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml" id="ngsdev-dot-org">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="content-script-type" content="text/javascript" />
+	<meta http-equiv="content-style-type" content="text/css" />
+
+	<title>Notepad - DBClass.js Demo</title>
+
+	<style type="text/css">/*<![CDATA[*/
+		body { font-size:10pt; padding:0; margin:0; }
+		ul { margin:0; padding:0; list-style:none; }
+		p { margin:0; }
+		input, textarea { border:0; }
+		#navi { height:2em; width:100%; background:#666; }
+		#navi li { float:left; }
+		#navi li a { color:#fff; text-decoration:none; display:block; padding:0.5em; }
+		#navi li a:hover { background:#fff; color:#666; }
+		#notes { padding:1.5em; clear:both; }
+		#notes li { width:20%; position:relative; top:0; left:0; }
+		#notes li .remove { position:absolute; top:0; right:0; }
+		#notes li .remove a { color:#fff; display:block; text-decoration:none; padding:0.5em; }
+		#notes li .title,
+		#notes li .title input { background:#999; margin:0; }
+		#notes li .title input { display:block; width:90%; color:#fff; padding:0.5em 0; text-indent:0.5em; }
+		#notes li .text { border:2px solid #999; }
+		#notes li .text textarea { display:block; width:100%; height:100px; }
+		#notes li .modified { font-size:0.85em; color:#999; padding:0 0 1em 0; text-align:right; }
+	/*]]>*/</style>
+
+	<script type="text/javascript" src="../../src/AbstractSQL.js"></script>
+	<script type="text/javascript" src="../../src/DBClass.js"></script>
+	<script type="text/javascript">/*<![CDATA[*/
+
+var schema,initialized=false,notes;
+var ID_LENGTH = 15, ID_BASE = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+function init() {
+	notes = document.getElementById("notes");
+	//
+	var MyDB = DBClass.create("dbclass_test",10000,DBClass.Adapter.AUTO,"1.0","DBClass Demo");
+	var db = new MyDB();
+	//
+	var id = new AbstractSQL.Field("id",AbstractSQL.FieldType.TEXT,ID_LENGTH);
+	id.primary = true;
+	id.notNull = true;
+	id.unique = true;
+	var title = new AbstractSQL.Field("title",AbstractSQL.FieldType.TEXT,0xff);
+	var text = new AbstractSQL.Field("text",AbstractSQL.FieldType.TEXT,0xff);
+	var added = new AbstractSQL.Field("added",AbstractSQL.FieldType.TEXT,0xff);
+	added.notNull = true;
+	var modified = new AbstractSQL.Field("modified",AbstractSQL.FieldType.TEXT,0xff);
+	modified.notNull = true;
+	schema = db.schema("nodepad",[id,title,text,added,modified]);
+	//
+	schema.init(function(s){
+		console.log(this.sql);
+		if(!s) return alert("Failed to initialize.");
+		schema.select(["id","title","text","added","modified"],null,null,null,function(s){
+			console.log(this.sql);
+			this.each(function(i){ appendNote(this); });
+		});
+		initialized = true;
+	});
+}
+
+function generateId(callback) {
+	var id = "";
+	do {
+		id += ID_BASE.charAt(parseInt(ID_BASE.length*Math.random()));
+	} while(id.length<ID_LENGTH);
+	schema.count(new AbstractSQL.Where("id",id),function(n){
+		console.log(this.sql);
+		if(n) generateId(callback);
+		else callback.apply(window,[id]);
+	})
+}
+
+function newNote() {
+	if(!initialized) return;
+	generateId(function(id){
+		var obj = { id:id, added:new Date().toString(),modified:new Date().toString() };
+		schema.insert(obj,null,function(){
+			console.log(this.sql);
+			if(this.error) return alert(this.error.message);
+			appendNote(obj);
+		});
+	});
+}
+
+function updateNote(id) {
+	var title = document.getElementById("title-"+id).value;
+	var text = document.getElementById("text-"+id).value;
+	var d = new Date();
+	var obj = {
+		title : title,
+		text :text,
+		modified : d.toString()
+	}
+	schema.update(obj,new AbstractSQL.Where("id",id),null,function(s){
+		console.log(this.sql);
+		document.getElementById("modified-"+id).innerHTML = getDateString(d);
+		if(this.error) return alert(this.error.message);
+	});
+}
+
+function removeNote(id) {
+	schema.remove(new AbstractSQL.Where("id",id),function(s){
+		console.log(this.sql);
+		if(this.error) return alert(this.error.message);
+		notes.removeChild(document.getElementById("note-"+id));
+	});
+}
+
+function getDateString(date) {
+	return [
+		[date.getFullYear(),date.getMonth()+1,date.getDate()].join("\/"),
+		[date.getHours(),date.getMinutes(),date.getSeconds()].join("\/")
+	].join(" ");
+
+}
+
+function appendNote(item) {
+	var li = document.createElement("li");
+	var added = new Date(item.added);
+	var modified = new Date(item.modified);
+	console.log(item);
+	li.id = "note-"+item.id;
+	li.className = "note";
+	li.innerHTML = [
+		"<p class=\"remove\">",
+			"<a href=\"#note-",item.id,"\" onclick=\"removeNote('",item.id,"')\">X<\/a>",
+		"<\/p>",
+		"<div class=\"title\">",
+			"<input type=\"text\" id=\"title-",item.id,"\" onchange=\"updateNote('",item.id,"')\" value=\"",item.title||"","\" \/>",
+		"<\/div>",
+		"<div class=\"text\">",
+			"<textarea id=\"text-",item.id,"\" onchange=\"updateNote('",item.id,"')\">",item.text||"","<\/textarea>",
+		"<\/div>",
+		"<p class=\"modified\">",
+			"Modified: <span id=\"modified-",item.id,"\">",
+				getDateString(modified),
+			"<\/span>",
+		"<\/p>"
+	].join("");
+	notes.appendChild(li);
+}
+
+function removeAll() {
+	schema.drop(function(){
+		console.log(this.sql);
+		if(this.error) {
+			alert(this.error);
+		}
+		notes.innerHTML = "";
+	});
+}
+	
+	/*]]>*/</script>
+</head>
+<body onload="init();">
+
+<div id="wrapper">
+	<ul id="navi">
+		<li><a href="#navi" onclick="newNote();return false;">Add Note</a></li>
+		<li><a href="#navi" onclick="removeAll();return false;">Remove All</a></li>
+	</ul>
+	<ul id="notes"></ul>
+</div>
+
+</body>
+</html>

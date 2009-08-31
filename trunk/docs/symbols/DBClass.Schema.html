@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - AbstractSQL.Field</title>
+		<title>JsDoc Reference - DBClass.Schema</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -228,7 +228,7 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class AbstractSQL.Field
+				Class DBClass.Schema
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -238,13 +238,13 @@ ul.inheritsList
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/AbstractSQL.js.html">AbstractSQL.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/DBClass.js.html">DBClass.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class AbstractSQL.Field.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class DBClass.Schema.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -257,7 +257,7 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/AbstractSQL.Field.html#constructor">AbstractSQL.Field</a></b>(key, type, length, primary, order, keyOnConflict, autoIncrement, notNull, notNullOnConflict, unique, uniqueNullOnConflict)
+								<b><a href="../symbols/DBClass.Schema.html#constructor">DBClass.Schema</a></b>(db, name, fields, createManually)
 							</div>
 							<div class="description"></div>
 						</td>
@@ -270,7 +270,7 @@ ul.inheritsList
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class AbstractSQL.Field.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class DBClass.Schema.">
 					<caption>Field Summary</caption>
 					<thead>
 						<tr>
@@ -284,9 +284,9 @@ ul.inheritsList
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
-								<b><a href="../symbols/AbstractSQL.Field.html#autoIncrement">autoIncrement</a></b>
+								<b><a href="../symbols/DBClass.Schema.html#createManually">createManually</a></b>
 								</div>
-								<div class="description"></div>
+								<div class="description">If true, don't create table automatic.</div>
 							</td>
 						</tr>
 					
@@ -294,9 +294,9 @@ ul.inheritsList
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
-								<b><a href="../symbols/AbstractSQL.Field.html#key">key</a></b>
+								<b><a href="../symbols/DBClass.Schema.html#fields">fields</a></b>
 								</div>
-								<div class="description"></div>
+								<div class="description">Array contains AbstractSQL.Field class instances.</div>
 							</td>
 						</tr>
 					
@@ -304,99 +304,9 @@ ul.inheritsList
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
-								<b><a href="../symbols/AbstractSQL.Field.html#keyOnConflict">keyOnConflict</a></b>
+								<b><a href="../symbols/DBClass.Schema.html#name">name</a></b>
 								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/AbstractSQL.Field.html#length">length</a></b>
-								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/AbstractSQL.Field.html#lower">lower</a></b>
-								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/AbstractSQL.Field.html#notNull">notNull</a></b>
-								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/AbstractSQL.Field.html#notNullOnConflict">notNullOnConflict</a></b>
-								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/AbstractSQL.Field.html#order">order</a></b>
-								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/AbstractSQL.Field.html#primary">primary</a></b>
-								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/AbstractSQL.Field.html#type">type</a></b>
-								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/AbstractSQL.Field.html#unique">unique</a></b>
-								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/AbstractSQL.Field.html#uniqueOnConflict">uniqueOnConflict</a></b>
-								</div>
-								<div class="description"></div>
+								<div class="description">Table name</div>
 							</td>
 						</tr>
 					
@@ -411,7 +321,7 @@ ul.inheritsList
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class AbstractSQL.Field.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class DBClass.Schema.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -424,9 +334,72 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/AbstractSQL.Field.html#toString">toString</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/DBClass.Schema.html#count">count</a></b>(where, callback)
 								</div>
-								<div class="description"></div>
+								<div class="description">Get rows size, first argument of callback is number.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DBClass.Schema.html#drop">drop</a></b>(callback)
+								</div>
+								<div class="description">Drop table</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DBClass.Schema.html#exec">exec</a></b>(sql, callback, bind)
+								</div>
+								<div class="description">Execute SQL</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DBClass.Schema.html#init">init</a></b>(callback)
+								</div>
+								<div class="description">Initialize Schema</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DBClass.Schema.html#insert">insert</a></b>(data, onConflict, callback)
+								</div>
+								<div class="description">Insert data</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DBClass.Schema.html#remove">remove</a></b>(where, callback)
+								</div>
+								<div class="description">Remove rows</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DBClass.Schema.html#select">select</a></b>(fields, where, limit, order, callback)
+								</div>
+								<div class="description">Select rows</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DBClass.Schema.html#update">update</a></b>(data, where, on, callback)
+								</div>
+								<div class="description">Update rows</div>
 							</td>
 						</tr>
 					
@@ -447,7 +420,7 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>AbstractSQL.Field</b>(key, type, length, primary, order, keyOnConflict, autoIncrement, notNull, notNullOnConflict, unique, uniqueNullOnConflict)
+						<b>DBClass.Schema</b>(db, name, fields, createManually)
 				</div>
 				
 				<div class="description">
@@ -463,67 +436,25 @@ ul.inheritsList
 						<dt class="heading">Parameters:</dt>
 						
 							<dt>
-								<span class="light fixedFont">{String}</span>  <b>key</b>
+								<span class="light fixedFont">{<a href="../symbols/DBClass.html">DBClass</a>}</span>  <b>db</b>
 								
 							</dt>
 								<dd></dd>
 						
 							<dt>
-								<span class="light fixedFont">{<a href="../symbols/AbstractSQL.FieldType.html">AbstractSQL.FieldType</a>}</span>  <b>type</b>
+								<span class="light fixedFont">{String}</span>  <b>name</b>
 								
 							</dt>
-								<dd></dd>
+								<dd>Table name.</dd>
 						
 							<dt>
-								<span class="light fixedFont">{int}</span>  <b>length</b>
+								<span class="light fixedFont">{Array.&lt;AbstractSQL.Field&gt;}</span>  <b>fields</b>
 								
 							</dt>
-								<dd>0-0xff</dd>
+								<dd>Array contains AbstractSQL.Field class instances.</dd>
 						
 							<dt>
-								<span class="light fixedFont">{Boolean}</span>  <b>primary</b>
-								
-							</dt>
-								<dd>PRIMARY KEY</dd>
-						
-							<dt>
-								<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Order.html">AbstractSQL.Order</a>}</span>  <b>order</b>
-								
-							</dt>
-								<dd>ASC|DESC</dd>
-						
-							<dt>
-								<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Conflict.html">AbstractSQL.Conflict</a>}</span>  <b>keyOnConflict</b>
-								
-							</dt>
-								<dd></dd>
-						
-							<dt>
-								<span class="light fixedFont">{Boolean}</span>  <b>autoIncrement</b>
-								
-							</dt>
-								<dd>AUTOINCREMENT</dd>
-						
-							<dt>
-								<span class="light fixedFont">{Boolean}</span>  <b>notNull</b>
-								
-							</dt>
-								<dd>NOT NULL</dd>
-						
-							<dt>
-								<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Conflict.html">AbstractSQL.Conflict</a>}</span>  <b>notNullOnConflict</b>
-								
-							</dt>
-								<dd></dd>
-						
-							<dt>
-								<span class="light fixedFont">{Boolean}</span>  <b>unique</b>
-								
-							</dt>
-								<dd>UNIQUE</dd>
-						
-							<dt>
-								<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Conflict.html">AbstractSQL.Conflict</a>}</span>  <b>uniqueNullOnConflict</b>
+								<span class="light fixedFont">{Boolean}</span>  <b>createManually</b>
 								
 							</dt>
 								<dd></dd>
@@ -546,15 +477,15 @@ ul.inheritsList
 					Field Detail
 				</div>
 				
-					<a name="autoIncrement"> </a>
+					<a name="createManually"> </a>
 					<div class="fixedFont">
 					
 					<span class="light">{Boolean}</span>
-					<b>autoIncrement</b>
+					<b>createManually</b>
 					
 					</div>
 					<div class="description">
-						
+						If true, don't create table automatic.
 						
 						
 					</div>
@@ -568,242 +499,37 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="key"> </a>
+					<a name="fields"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Array.&lt;AbstractSQL.Field&gt;}</span>
+					<b>fields</b>
+					
+					</div>
+					<div class="description">
+						Array contains AbstractSQL.Field class instances.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="name"> </a>
 					<div class="fixedFont">
 					
 					<span class="light">{String}</span>
-					<b>key</b>
+					<b>name</b>
 					
 					</div>
 					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="keyOnConflict"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{<a href="../symbols/AbstractSQL.Conflict.html">AbstractSQL.Conflict</a>}</span>
-					<b>keyOnConflict</b>
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="length"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{int}</span>
-					<b>length</b>
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="lower"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{Boolean}</span>
-					<b>lower</b>
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-							<dl class="detailList">
-							<dt class="heading">Default Value:</dt>
-							<dd>
-								false
-							</dd>
-							</dl>
-						
-
-					<hr />
-				
-					<a name="notNull"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{notNull}</span>
-					<b>notNull</b>
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="notNullOnConflict"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{<a href="../symbols/AbstractSQL.Conflict.html">AbstractSQL.Conflict</a>}</span>
-					<b>notNullOnConflict</b>
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="order"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{<a href="../symbols/AbstractSQL.Order.html">AbstractSQL.Order</a>}</span>
-					<b>order</b>
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="primary"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{Boolean PRIMARY KEY}</span>
-					<b>primary</b>
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="type"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{<a href="../symbols/AbstractSQL.FieldType.html">AbstractSQL.FieldType</a>}</span>
-					<b>type</b>
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="unique"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{Boolean}</span>
-					<b>unique</b>
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="uniqueOnConflict"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{<a href="../symbols/AbstractSQL.Conflict.html">AbstractSQL.Conflict</a>}</span>
-					<b>uniqueOnConflict</b>
-					
-					</div>
-					<div class="description">
-						
+						Table name
 						
 						
 					</div>
@@ -825,15 +551,15 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name="toString"> </a>
+					<a name="count"> </a>
 					<div class="fixedFont">
 					
-					<span class="light">{, }</span>
-					<b>toString</b>()
+					
+					<b>count</b>(where, callback)
 					
 					</div>
 					<div class="description">
-						
+						Get rows size, first argument of callback is number.
 						
 						
 					</div>
@@ -841,18 +567,350 @@ ul.inheritsList
 					
 					
 						
-						
-						
-						
-						
 							<dl class="detailList">
-							<dt class="heading">Returns:</dt>
+							<dt class="heading">Parameters:</dt>
 							
-								<dd>SQL String</dd>
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Where.html">AbstractSQL.Where</a>}</span> <b>where</b>
+									
+								</dt>
+								<dd></dd>
 							
-								<dd>String</dd>
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
+									
+								</dt>
+								<dd></dd>
 							
 							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="drop"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>drop</b>(callback)
+					
+					</div>
+					<div class="description">
+						Drop table
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="exec"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>exec</b>(sql, callback, bind)
+					
+					</div>
+					<div class="description">
+						Execute SQL
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.html">AbstractSQL</a>}</span> <b>sql</b>
+									
+								</dt>
+								<dd>First callback argument in DBClass.Result instance.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Array.<String>}</span> <b>bind</b>
+									
+								</dt>
+								<dd>Bind Variables; Not supported in Yahoo</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="init"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>init</b>(callback)
+					
+					</div>
+					<div class="description">
+						Initialize Schema
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="insert"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>insert</b>(data, onConflict, callback)
+					
+					</div>
+					<div class="description">
+						Insert data
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Map.&lt;String|mixed&gt;}</span> <b>data</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Conflict.html">AbstractSQL.Conflict</a>}</span> <b>onConflict</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="remove"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>remove</b>(where, callback)
+					
+					</div>
+					<div class="description">
+						Remove rows
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Where.html">AbstractSQL.Where</a>|AbstractSQL.WhereList}</span> <b>where</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="select"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>select</b>(fields, where, limit, order, callback)
+					
+					</div>
+					<div class="description">
+						Select rows
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Array.&lt;String&gt;}</span> <b>fields</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Where.html">AbstractSQL.Where</a>|AbstractSQL.WhereList}</span> <b>where</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{int}</span> <b>limit</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Order.html">AbstractSQL.Order</a>}</span> <b>order</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="update"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>update</b>(data, where, on, callback)
+					
+					</div>
+					<div class="description">
+						Update rows
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Map.&lt;String|String&gt;}</span> <b>data</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Where.html">AbstractSQL.Where</a>|AbstractSQL.WhereList}</span> <b>where</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/AbstractSQL.Conflict.html">AbstractSQL.Conflict</a>}</span> <b>on</b>
+									
+								</dt>
+								<dd>conflict</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
 						
 						
 						

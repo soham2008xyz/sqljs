@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml" id="ngsdev-dot-org">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="content-script-type" content="text/javascript" />
+	<meta http-equiv="content-style-type" content="text/css" />
+	<script type="text/javascript" src="../../src/AbstractSQL.js"></script>
+	<script type="text/javascript" src="../../src/DBClass.js"></script>
+	<link rel="stylesheet" type="text/css" href="../_assets/default.css" />
+	<script type="text/javascript" src="../_assets/highlight.pack.js"></script>
+
+	<title>AbstractSQL.js test</title>
+	<script type="text/javascript">
+		var form,code,output,db;
+		function init() {
+			form = document.getElementById("testform");
+			code = form.code;
+			output = document.getElementById("output-pre");
+		}
+		function onSubmit() {
+			try{
+				eval(code.value);
+			} catch(e){
+				alert(e);
+			}
+		}
+	</script>
+	
+</head>
+<body onload="init();">
+<form onsubmit="onSubmit();return false;" id="testform">
+<div>
+<textarea name="code" style="width:44%;height:300px;float:left;">
+var MyDB = DBClass.create("test",10000,DBClass.Adapter.AUTO,"1.0","testdb");
+var db = new MyDB();
+var schema = db.schema("test1",[
+	new AbstractSQL.Field("id",AbstractSQL.FieldType.INTEGER,null,true,null,null,true),
+	new AbstractSQL.Field("name",AbstractSQL.FieldType.TEXT,0xff),
+	new AbstractSQL.Field("address",AbstractSQL.FieldType.TEXT,0xff)
+]);
+
+schema.init(function(s){
+	console.log(s);
+	schema.insert({name:"あいうえお",address:"ほげほげ"},null,function(){
+		console.log(this);
+		schema.select("*",null,null,null,function(){
+			console.log(this);
+			this.each(function(i){
+				console.log(i,this);
+			});
+		})
+	});
+})
+
+
+
+
+</textarea>
+<p style="padding-top:132px;width:5%;float:left;margin:0;text-align:center;"><input type="submit" value="eval &raquo;" /></p>
+<div style="width:44%;height:300px;float:left;display:block;overflow:auto;" id="output-div"></div>
+</div>
+</form>
+</body>
+</html>
