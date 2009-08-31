@@ -11,33 +11,20 @@
 	<script type="text/javascript">
 		var form,code,output,db;
 		function init() {
-			db = openDatabase("testdb", "1.0", "Test", "1048576");
 			form = document.getElementById("testform");
 			code = form.code;
 			output = form.output;
-			onSubmit();
 		}
 		function outputText(text) {
 			output.value = (text||"").toString();
 		}
 		function onSubmit() {
 			try{
-				outputText(eval("(function(){;"+code.value+";})();"));
+				eval(code.value);
+				outputText(sql);
 			} catch(e){
 				outputText(e);
 			}
-		}
-		function exec(db,sql) {
-			db.transaction(function(tx){
-				tx.executeSql(sql,[],function(tx,result){
-					for (var i=0;i<result.rows.length;++i) {
-						console.log(i,result.rows.item(i));
-					}
-				},function(res,err){
-					console.log(res,err);
-				});
-			});
-		
 		}
 	</script>
 	
@@ -45,41 +32,26 @@
 <body onload="init();">
 <form onsubmit="onSubmit();return false;" id="testform">
 <div>
-<textarea name="code" style="width:40%;height:200px;float:left;margin-right:1em;">
-
+<textarea name="code" style="width:40%;height:300px;float:left;">
 var sql = new AbstractSQL("test");
-//
-/*
+
 sql.createTable([
 	new AbstractSQL.Field("id",AbstractSQL.FieldType.INTEGER,10,true),
 	new AbstractSQL.Field("name",AbstractSQL.FieldType.TEXT,255,false)
-	
 ]);
-sql.insert({
-  "id":100,
-  "name":"長瀬敦史"
-})
 
+sql.insert({ "id":101, "name":"長瀬敦史" });
+sql.insert({ "id":100, "name":"長瀬敦史" },AbstractSQL.Conflict.REPLACE);
 
 sql.count("id",[
-	new AbstractSQL.Where("name","長")
+	new AbstractSQL.Where("name","長%",AbstractSQL.Operator.LIKE)
 ]);
 
-sql.update({
-  name:"あいうえ",
-  id:12
-
-},[
+sql.update({ name:"あいうえ", id:12 },[
 	new AbstractSQL.WhereLest(AbstractSQL.Logic.OR,[
 		new AbstractSQL.Where("id",100)
 	])
 ],AbstractSQL.Conflict.REPLACE);
-*/
-
-sql.insert({
-  "id":100,
-  "name":"長瀬敦史"
-},AbstractSQL.Conflict.REPLACE);
 
 sql.select(["id","name"],[
 	new AbstractSQL.WhereLest(AbstractSQL.Logic.OR,[
@@ -88,16 +60,11 @@ sql.select(["id","name"],[
 	])
 ]);
 
-exec(db,sql);
-
-return sql;
-
 </textarea>
-<textarea name="output" style="width:40%;height:200px;float:left;">
-
+<p style="padding-top:132px;width:5%;float:left;margin:0;text-align:center;"><input type="submit" value="eval &raquo;" /></p>
+<textarea name="output" style="width:40%;height:300px;float:left;">
 </textarea>
 </div>
-<p style="width:100%;clear:both;margin:0;padding:1em 0 0 0;"><input type="submit" value="eval" /></p>
 </form>
 </body>
 </html>
