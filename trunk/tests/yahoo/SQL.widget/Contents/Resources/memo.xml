@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?konfabulator xml-strict="true"?>
+<window width="250" height="150" style="background:#ffffff;" shadow="true">
+	<frame style="background-color:#999999;" height="18" width="250">
+		<textarea vOffset="2" color="#ffffff" width="200" data="Untitiled" lines="1" name="title" style="font-size:12px;" />
+		<text vOffset="2" hOffset="232" anchorStyle="topLeft" color="#ffffff" data="x" name="close" />
+	</frame>
+	<textarea vOffset="20" color="#999" width="250" data="" lines="7" name="text" style="font-size:12px;" />
+	
+	
+	<text vOffset="132" hOffset="145" width="100" anchorStyle="topLeft" color="#999999" data="" name="modified" style="text-align:right;" />
+</window>

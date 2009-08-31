@@ -3,11 +3,18 @@
 <widget>
 	<script src="Scripts/AbstractSQL.js" charset="utf-8" />
 	<script src="Scripts/DBClass.js" charset="utf-8" />
+	<script src="main.js" charset="utf-8" />
 	<settings>
 		<setting name="debug" value="on"/>
 	</settings>
-	<window name="main" level="normal">
-		
+	<window name="navi">
+		<frame style="background:#ffffff;" width="200" height="50">
+			<text anchorStyle="topLeft" color="#000000" data="newNote" onclick="newNote();" vOffset="10" hOffset="10" />
+			<text anchorStyle="topLeft" color="#000000" data="removeAll" onclick="removeAll();" vOffset="10" hOffset="100" />
+		</frame>
 	</window>
+	<action trigger="onLoad">
+		init();
+	</action>
 </widget>
 
