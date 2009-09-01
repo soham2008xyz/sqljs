@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<application xmlns="http://ns.adobe.com/air/application/1.0">
+	<id>com.googlecode.sqljs.tests.air.Notepad</id>
+	<filename>Notepad</filename>
+	<name>Notepad</name>
+	<version>0.1</version>
+	<description>DBClass.js sample</description>
+	<copyright>Apache License 2.0 (C)2009 Atsushi Nagase</copyright>
+	<initialWindow>
+		<content>notepad.html</content>
+		<title>Notepad</title>
+		<systemChrome>standard</systemChrome>
+		<transparent>false</transparent>
+		<visible>true</visible>
+		<minimizable>true</minimizable>
+		<maximizable>false</maximizable>
+		<resizable>true</resizable>
+		<width>434</width>
+		<height>400</height>
+		<x>200</x>
+		<y>200</y>
+		<minSize>434 400</minSize>
+		<maxSize>434 400</maxSize>
+	</initialWindow>
+	<icon>
+		<image16x16>icons/AIRApp_16.png</image16x16>
+		<image32x32>icons/AIRApp_32.png</image32x32>
+		<image48x48>icons/AIRApp_48.png</image48x48>
+		<image128x128>icons/AIRApp_128.png</image128x128>
+	</icon>
+
+</application>
