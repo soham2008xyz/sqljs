@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-	<name>DBClass test</name>
+	<name>Notepad</name>
 	<version>0.1</version>
-	<identifier>com.googlecode.sqljs.tests.test01</identifier>
+	<identifier>com.googlecode.sqljs.tests.yahoo.Notepad</identifier>
 	<author name="Atsushi Nagase" organization="LittleApps Inc." href="http://ngsdev.org/"/>
 	<copyright>Apache License 2.0 (C)2009 Atsushi Nagase</copyright>
 	<description></description>
