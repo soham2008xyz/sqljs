@@ -218,7 +218,7 @@
 <span class='line'>211</span> </span><span class="WHIT">	</span><span class="NAME">appendWhere</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sql</span><span class="PUNC">,</span><span class="NAME">where</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>212</span> </span><span class="WHIT">		</span><span class="KEYW">if</span><span class="PUNC">(</span><span class="WHIT">
 <span class='line'>213</span> </span><span class="WHIT">			</span><span class="NAME">where</span><span class="WHIT"> </span><span class="KEYW">instanceof</span><span class="WHIT"> </span><span class="NAME">AbstractSQL.Where</span><span class="PUNC">||</span><span class="WHIT">
-<span class='line'>214</span> </span><span class="WHIT">			</span><span class="NAME">where</span><span class="WHIT"> </span><span class="KEYW">instanceof</span><span class="WHIT"> </span><span class="NAME">AbstractSQL.WhereLest</span><span class="WHIT">
+<span class='line'>214</span> </span><span class="WHIT">			</span><span class="NAME">where</span><span class="WHIT"> </span><span class="KEYW">instanceof</span><span class="WHIT"> </span><span class="NAME">AbstractSQL.WhereList</span><span class="WHIT">
 <span class='line'>215</span> </span><span class="WHIT">		</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>216</span> </span><span class="WHIT">			</span><span class="NAME">where.lower</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.lower</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>217</span> </span><span class="WHIT">			</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">sql.concat</span><span class="PUNC">(</span><span class="PUNC">[</span><span class="NAME">AbstractSQL.util.sqlcase</span><span class="PUNC">(</span><span class="STRN">"where"</span><span class="PUNC">,</span><span class="NAME">this.lower</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="NAME">where</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
@@ -420,13 +420,13 @@
 <span class='line'>413</span>  * @param {AbstractSQL.Logic} logic 
 <span class='line'>414</span>  * @param {Array&lt;AbstractSQL.Where|AbstractSQL.WhereList&gt;} list
 <span class='line'>415</span>  */</span><span class="WHIT">
-<span class='line'>416</span> </span><span class="NAME">AbstractSQL.WhereLest</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">logic</span><span class="PUNC">,</span><span class="NAME">list</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>416</span> </span><span class="NAME">AbstractSQL.WhereList</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">logic</span><span class="PUNC">,</span><span class="NAME">list</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>417</span> </span><span class="WHIT">	</span><span class="NAME">this.list</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">list</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>418</span> </span><span class="WHIT">	</span><span class="NAME">this.logic</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">logic</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>419</span> </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'>420</span> 
 <span class='line'>421</span> </span><span class="COMM">/* @class */</span><span class="WHIT">
-<span class='line'>422</span> </span><span class="NAME">AbstractSQL.WhereLest.prototype</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>422</span> </span><span class="NAME">AbstractSQL.WhereList.prototype</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>423</span> </span><span class="WHIT">	</span><span class="COMM">/**
 <span class='line'>424</span> 	 * @type Array&lt;AbstractSQL.Where|AbstractSQL.WhereList&gt;
 <span class='line'>425</span> 	 */</span><span class="WHIT">
