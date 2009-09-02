@@ -7,10 +7,16 @@
 	<link rev="made" title="Atsushi Nagase" href="http://ngsdev.org/">
 	<link rel="stylesheet" type="text/css" media="all" href="notepad.css">
 	<script type="text/javascript" src="scripts/air/AIRAliases.js" charset="utf-8"></script>
-	<script type="text/javascript" src="scripts/lib/AIRAliases.js" charset="utf-8"></script>
+	<script type="text/javascript" src="scripts/lib/AbstractSQL.js" charset="utf-8"></script>
+	<script type="text/javascript" src="scripts/lib/DBClass.js" charset="utf-8"></script>
+	<script type="text/javascript" src="notepad.js" charset="utf-8"></script>
 	<title>Notepad</title>
 </head>
-<body>
-test
+<body onload="init(event);">
+<div id="wrapper">
+	<ul id="navi">
+		<li class="new"><a href="#navi" onclick="newNote();return false;">New Note</a></li>
+	</ul>
+</div>
 </body>
 </html>
