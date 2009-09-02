@@ -74,7 +74,7 @@ function generateId(callback) {
 	} while(id.length<ID_LENGTH);
 	schema.count(new AbstractSQL.Where("id",id),function(n){
 		console.log(this.sql);
-		if(n) generateId(callback);
+		if(n>0) generateId(callback);
 		else callback.apply(window,[id]);
 	})
 }
