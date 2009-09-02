@@ -53,13 +53,13 @@ sql.count("id",[
 ]);
 
 sql.update({ name:"あいうえ", id:12 },[
-	new AbstractSQL.WhereLest(AbstractSQL.Logic.OR,[
+	new AbstractSQL.WhereList(AbstractSQL.Logic.OR,[
 		new AbstractSQL.Where("id",100)
 	])
 ],AbstractSQL.Conflict.REPLACE);
 
 sql.select(["id","name"],[
-	new AbstractSQL.WhereLest(AbstractSQL.Logic.OR,[
+	new AbstractSQL.WhereList(AbstractSQL.Logic.OR,[
 		new AbstractSQL.Where("id",100),
 		new AbstractSQL.Where("id","101")
 	])

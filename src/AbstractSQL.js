@@ -211,7 +211,7 @@ AbstractSQL.prototype = {
 	appendWhere : function(sql,where) {
 		if(
 			where instanceof AbstractSQL.Where||
-			where instanceof AbstractSQL.WhereLest
+			where instanceof AbstractSQL.WhereList
 		) {
 			where.lower = this.lower;
 			return sql.concat([AbstractSQL.util.sqlcase("where",this.lower),where]);
@@ -413,13 +413,13 @@ AbstractSQL.Where.prototype = {
  * @param {AbstractSQL.Logic} logic 
  * @param {Array&lt;AbstractSQL.Where|AbstractSQL.WhereList&gt;} list
  */
-AbstractSQL.WhereLest = function(logic,list) {
+AbstractSQL.WhereList = function(logic,list) {
 	this.list = list;
 	this.logic = logic;
 }
 
 /* @class */
-AbstractSQL.WhereLest.prototype = {
+AbstractSQL.WhereList.prototype = {
 	/**
 	 * @type Array&lt;AbstractSQL.Where|AbstractSQL.WhereList&gt;
 	 */
