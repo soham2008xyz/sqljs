@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+<ModulePrefs
+	title="OneLine DateTime"
+	title_url="http://code.google.com/p/sqljs/"
+	description="AbstractSQL.js Test"
+	height="350" scrolling="false" singleton="false"
+	screenshot="http://onlinedt.googlecode.com/svn/trunk/capture.jpg"
+	thumbnail="http://onlinedt.googlecode.com/svn/trunk/thumbnail.png"
+
+	author="Atsushi Nagase"
+	author_location="Meguro Tokyo,JAPAN"
+	author_aboutme="Web Engineer"
+	author_link="http://ngsdev.org/"
+	author_email="atsn.ngs@gmail.com"
+	author_photo="http://onlinedt.googlecode.com/svn/trunk/nagase.png"
+/>
+<Content type="url" href="http://sqljs.googlecode.com/svn/trunk/tests/AbstractSQL.html" />
+</Module>
