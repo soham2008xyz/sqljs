@@ -13,6 +13,9 @@ DBClass.Adapter = {
 	HTML5 : "html5",
 	/** @member
 	 * @constant */
+	GEARS : "gears",
+	/** @member
+	 * @constant */
 	YAHOO : "yahoo",
 	/** @member
 	 * @constant */
@@ -62,6 +65,11 @@ DBClass.detectDB = function(ins) {
 	switch(ins.type) {
 	case DBClass.Adapter.HTML5:
 		db = openDatabase(ins.name, ins.version, ins.comment, ins.size);
+		return db;
+		break;
+	case DBClass.Adapter.GEARS:
+		db = google.gears.factory.create("beta.database");
+		db.open(ins.name);
 		return db;
 		break;
 	case DBClass.Adapter.YAHOO:
@@ -168,7 +176,7 @@ DBClass.Schema.prototype = {
 		callback = callback || function(){};
 		var f = function() {
 			if(!schema.createManually) {
-				schema.exec(sql.createTable(this.fields,true,false),function(){
+				schema.exec(sql.createTable(schema.fields,true,false),function(){
 					callback.apply(schema,[this]);
 				});
 			}
@@ -212,6 +220,7 @@ DBClass.Schema.prototype = {
 	exec : function(sql,callback,bind) {
 		var schema = this;
 		var isSelect = new RegExp("^select .+","i").test(sql);
+		var db = schema.db.db;
 		callback = callback || function(){};
 		bind = bind||[];
 		var callbackError = function(err) {
@@ -232,16 +241,17 @@ DBClass.Schema.prototype = {
 			res.sql = sql;
 			callback.apply(res);
 		}
-		if(schema.db.type==DBClass.Adapter.YAHOO) {
+		switch(schema.db.type) {
+		case DBClass.Adapter.YAHOO:
 			try {
-				var r = isSelect?schema.db.db.query(sql):schema.db.db.exec(sql);
+				var r = isSelect?db.query(sql):db.exec(sql);
 				if(!r) return callbackError(new Error("No result."));
 				if(isSelect) {
 					var rows = r.getAll();
 					callbackSuccess(
-						function(callback) {
+						function(cb) {
 							for(var i=0;i<rows.length;i++) {
-								callback.apply(this.item(i),[i,this]);
+								cb.apply(this.item(i),[i,this]);
 							}
 						},
 						function(idx) { return rows[idx]; },
@@ -255,11 +265,12 @@ DBClass.Schema.prototype = {
 				callbackError(err);
 				return;
 			}
+			callbackError(err);
 			return;
-		} else if(schema.db.type==DBClass.Adapter.AIR) {
-			if(!schema.db.db.connection.connected) return callbackError(new Error("Not connected."));
+		case DBClass.Adapter.AIR:
+			if(!db.connection.connected) return callbackError(new Error("Not connected."));
 			var stmt = new air.SQLStatement();
-			stmt.sqlConnection = schema.db.db.connection;
+			stmt.sqlConnection = db.connection;
 			stmt.addEventListener(air.SQLEvent.RESULT, function(e){
 				
 			});
@@ -268,15 +279,53 @@ DBClass.Schema.prototype = {
 			});
 			stmt.text = sql.toString();
 			stmt.execute();
-		} else {
-			schema.db.db.transaction(function(tx){
+			return;
+		case DBClass.Adapter.GEARS:
+			try {
+				var r = db.execute(sql);
+				if(isSelect) {
+					var ar = [];
+					while(r.isValidRow()){
+						var itm = {};
+						for(var i=0;i<r.fieldCount();i++) {
+							itm[r.fieldName(i)] = r.field(i);
+						}
+						ar.push(itm);
+						r.next();
+					}
+					r.close();
+					callbackSuccess(
+						function(cb) {
+							for(var i=0;i<ar.length;i++) {
+								cb.apply(this.item(i),[i,this]);
+							}
+						},
+						function(idx) { return ar[idx]; },
+						ar.length
+					);
+					return;
+					
+				}
+				if(r) {
+					r.close();
+					callbackSuccess();
+					return;
+				}
+			} catch(e) {
+				callbackError(e);
+				return;
+			}
+			callbackError();
+			return;
+		default:
+			db.transaction(function(tx){
 				tx.executeSql(sql,bind,function(tx,r){
 					if(isSelect) {
 						var rows = r.rows;
 						callbackSuccess(
-							function(callback) {
+							function(cb) {
 								for(var i=0;i<rows.length;i++) {
-									callback.apply(rows.item(i),[i,this]);
+									cb.apply(rows.item(i),[i,this]);
 								}
 							},
 							function(idx) { return rows.item(idx); },
@@ -288,8 +337,10 @@ DBClass.Schema.prototype = {
 					return;
 				},function(tx,err){
 					callbackError(err);
+					return;
 				});
 			});
+			return;
 		}
 	},
 	/**

@@ -31,6 +31,7 @@
 
 	<script type="text/javascript" src="../../src/AbstractSQL.js"></script>
 	<script type="text/javascript" src="../../src/DBClass.js"></script>
+	<script type="text/javascript" src="gears_init.js"></script>
 	<script type="text/javascript">/*<![CDATA[*/
 
 var schema,initialized=false,notes;
@@ -38,8 +39,9 @@ var ID_LENGTH = 15, ID_BASE = "abcdefghijklmnopqrstuvwxyz0123456789";
 
 function init() {
 	notes = document.getElementById("notes");
+	var a = getParam("a");
 	//
-	var MyDB = DBClass.create("dbclass_test",10000,DBClass.Adapter.AUTO,"1.0","DBClass Demo");
+	var MyDB = DBClass.create("dbclass_test"+(a==DBClass.Adapter.GEARS?".db":""),10000,a||DBClass.Adapter.AUTO,"1.0","DBClass Demo");
 	var db = new MyDB();
 	//
 	var id = new AbstractSQL.Field("id",AbstractSQL.FieldType.TEXT,ID_LENGTH);
@@ -55,15 +57,13 @@ function init() {
 	schema = db.schema("nodepad",[id,title,text,added,modified]);
 	//
 	schema.init(function(s){
-		console.log(this.sql);
 		if(!s) return alert("Failed to initialize.");
+		initialized = true;
 		schema.select(["id","title","text","added","modified"],null,null,null,function(s){
 			console.log(this.sql);
-			if(!this.length)
-				return newNote();
+			if(!this.length) return newNote();
 			this.each(function(i){ appendNote(this); });
 		});
-		initialized = true;
 	});
 }
 
@@ -73,7 +73,6 @@ function generateId(callback) {
 		id += ID_BASE.charAt(parseInt(ID_BASE.length*Math.random()));
 	} while(id.length<ID_LENGTH);
 	schema.count(new AbstractSQL.Where("id",id),function(n){
-		console.log(this.sql);
 		if(n>0) generateId(callback);
 		else callback.apply(window,[id]);
 	})
@@ -162,6 +161,15 @@ function removeAll() {
 		}
 		notes.innerHTML = "";
 	});
+}
+
+function getParam(key) {
+	var search = (document.location.search||"").replace(/\?/,"").split("&");
+	for(var i in search) {
+		var kv = search[i].split("=");
+		if(kv[0]==key) return kv[1];
+	}
+	return "";
 }
 	
 	/*]]>*/</script>
