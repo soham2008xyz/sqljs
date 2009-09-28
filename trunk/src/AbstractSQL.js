@@ -506,7 +506,10 @@ AbstractSQL.Operator = {
 	GT : ">",
 	/** @member
 	 * @constant */
-	LIKE : " like "
+	LIKE : " like ",
+	/** @member
+	 * @constant */
+	IN : " in "
 	
 }
 
