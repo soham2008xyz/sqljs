@@ -205,6 +205,8 @@ ul.inheritsList
 	
 	<li><a href="../symbols/AbstractSQL.Order.html">AbstractSQL.Order</a></li>
 	
+	<li><a href="../symbols/AbstractSQL.String.html">AbstractSQL.String</a></li>
+	
 	<li><a href="../symbols/AbstractSQL.util.html">AbstractSQL.util</a></li>
 	
 	<li><a href="../symbols/AbstractSQL.Where.html">AbstractSQL.Where</a></li>
@@ -228,7 +230,7 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Namespace AbstractSQL.Order
+				Class AbstractSQL.Order
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -245,7 +247,7 @@ ul.inheritsList
 <!-- ============================== constructor summary ==================== -->			
 			
 			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class AbstractSQL.Order.">
-				<caption>Namespace Summary</caption>
+				<caption>Class Summary</caption>
 				<thead>
 					<tr>
 						<th scope="col">Constructor Attributes</th>
@@ -257,7 +259,7 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/AbstractSQL.Order.html#constructor">AbstractSQL.Order</a></b>
+								<b><a href="../symbols/AbstractSQL.Order.html#constructor">AbstractSQL.Order</a></b>(id, desc, lower)
 							</div>
 							<div class="description"></div>
 						</td>
@@ -281,20 +283,10 @@ ul.inheritsList
 					<tbody>
 					
 						<tr>
-							<td class="attributes">&lt;static&gt; &lt;constant&gt; &nbsp;</td>
+							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
-								AbstractSQL.Order.<b><a href="../symbols/AbstractSQL.Order.html#.ASC">ASC</a></b>
-								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&lt;static&gt; &lt;constant&gt; &nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								AbstractSQL.Order.<b><a href="../symbols/AbstractSQL.Order.html#.DESC">DESC</a></b>
+								<b><a href="../symbols/AbstractSQL.Order.html#lower">lower</a></b>
 								</div>
 								<div class="description"></div>
 							</td>
@@ -309,16 +301,43 @@ ul.inheritsList
 
 <!-- ============================== methods summary ======================== -->
 			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class AbstractSQL.Order.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/AbstractSQL.Order.html#toString">toString</a></b>()
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
 
 <!-- ============================== constructor details ==================== -->		
 			
 			<div class="details"><a name="constructor"> </a>
 				<div class="sectionTitle">
-					Namespace Detail
+					Class Detail
 				</div>
 				
 				<div class="fixedFont">
-						<b>AbstractSQL.Order</b>
+						<b>AbstractSQL.Order</b>(id, desc, lower)
 				</div>
 				
 				<div class="description">
@@ -329,6 +348,29 @@ ul.inheritsList
 				
 				
 				
+					
+						<dl class="detailList">
+						<dt class="heading">Parameters:</dt>
+						
+							<dt>
+								<span class="light fixedFont">{String}</span>  <b>id</b>
+								
+							</dt>
+								<dd></dd>
+						
+							<dt>
+								<span class="light fixedFont">{Boolean}</span>  <b>desc</b>
+								
+							</dt>
+								<dd></dd>
+						
+							<dt>
+								 <b>lower</b>
+								
+							</dt>
+								<dd></dd>
+						
+						</dl>
 					
 					
 					
@@ -346,33 +388,11 @@ ul.inheritsList
 					Field Detail
 				</div>
 				
-					<a name=".ASC"> </a>
-					<div class="fixedFont">&lt;static&gt; &lt;constant&gt; 
+					<a name="lower"> </a>
+					<div class="fixedFont">
 					
-					
-					<span class="light">AbstractSQL.Order.</span><b>ASC</b>
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name=".DESC"> </a>
-					<div class="fixedFont">&lt;static&gt; &lt;constant&gt; 
-					
-					
-					<span class="light">AbstractSQL.Order.</span><b>DESC</b>
+					<span class="light">{String}</span>
+					<b>lower</b>
 					
 					</div>
 					<div class="description">
@@ -386,6 +406,13 @@ ul.inheritsList
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								false
+							</dd>
+							</dl>
 						
 
 					
@@ -394,6 +421,45 @@ ul.inheritsList
 
 <!-- ============================== method details ========================= -->		
 			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="toString"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{, }</span>
+					<b>toString</b>()
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd>SQL String</dd>
+							
+								<dd>String</dd>
+							
+							</dl>
+						
+						
+						
+
+					
+				
+			
 			
 			<hr />
 		</div>
@@ -401,7 +467,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://www.jsdoctoolkit.org/" target="_blank">JsDoc Toolkit</a> 2.0.2 on Tue Sep 29 2009 01:05:22 GMT+0900 (JST)
+			Documentation generated by <a href="http://www.jsdoctoolkit.org/" target="_blank">JsDoc Toolkit</a> 2.0.2 on Tue Sep 29 2009 02:58:51 GMT+0900 (JST)
 		</div>
 	</body>
 </html>
