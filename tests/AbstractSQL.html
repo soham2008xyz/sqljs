@@ -24,12 +24,12 @@
 			hljs.highlightBlock(document.getElementById("output-pre"),"  ");
 		}
 		function onSubmit() {
-			try{
+			//try{
 				eval(code.value);
 				outputText(sql);
-			} catch(e){
-				outputText(e);
-			}
+			//} catch(e){
+			//	outputText(e);
+			//}
 		}
 	</script>
 	
@@ -64,6 +64,12 @@ sql.select(["id","name"],[
 		new AbstractSQL.Where("id","101")
 	])
 ]);
+
+sql.select("*",
+	new AbstractSQL.Where("id",
+		new AbstractSQL("test").select("id",null,10,new AbstractSQL.Order("id",true))
+	)
+);
 
 </textarea>
 <p style="padding-top:132px;width:5%;float:left;margin:0;text-align:center;"><input type="submit" value="eval &raquo;" /></p>

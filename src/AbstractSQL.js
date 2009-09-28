@@ -25,7 +25,7 @@ AbstractSQL.prototype = {
 	 * @returns {String} SQL String
 	 */
 	toString : function() {
-		return this.sql.join("\n");
+		return new AbstractSQL.String(this.sql.join("\n"));
 	},
 	/** @private */
 	sql:null,
@@ -53,6 +53,7 @@ AbstractSQL.prototype = {
 		}
 		sql.push(AbstractSQL.util.parenthesis(fld));
 		sql = sql.join(" ")+";";
+		sql = new AbstractSQL.String(sql);
 		this.sql.push(sql);
 		return sql;
 	},
@@ -66,6 +67,7 @@ AbstractSQL.prototype = {
 		if(ifExists) sql.push(AbstractSQL.util.sqlcase("if exists",this.lower));
 		sql.push(this.table);
 		sql = sql.join(" ");
+		sql = new AbstractSQL.String(sql);
 		this.sql.push(sql);
 		return sql;
 		
@@ -88,8 +90,14 @@ AbstractSQL.prototype = {
 			this.table
 		];
 		sql = this.appendWhere(sql,where);
+		if(order) {
+			if(order.lower==undefined)
+				order.lower = this.lower;
+			sql.push(order);
+		}
 		if(limit) sql.push(AbstractSQL.util.sqlcase("limit",this.lower)+" "+limit);
 		sql = sql.join(" ")+";";
+		sql = new AbstractSQL.String(sql);
 		this.sql.push(sql);
 		return sql;
 	},
@@ -123,6 +131,7 @@ AbstractSQL.prototype = {
 			AbstractSQL.util.sqlcase("values",this.lower)+AbstractSQL.util.quotize(datas)
 		]);
 		sql = sql.join(" ")+";";
+		sql = new AbstractSQL.String(sql);
 		this.sql.push(sql);
 		return sql;
 	},
@@ -156,6 +165,7 @@ AbstractSQL.prototype = {
 		]);
 		sql = this.appendWhere(sql,where);
 		sql = sql.join(" ")+";";
+		sql = new AbstractSQL.String(sql);
 		this.sql.push(sql);
 		return sql;
 	},
@@ -169,6 +179,7 @@ AbstractSQL.prototype = {
 		var sql = [AbstractSQL.util.sqlcase("delete from",this.lower), this.table];
 		sql = this.appendWhere(sql,where);
 		sql = sql.join(" ")+";";
+		sql = new AbstractSQL.String(sql);
 		this.sql.push(sql);
 		return sql;
 	},
@@ -187,6 +198,7 @@ AbstractSQL.prototype = {
 		];
 		sql = this.appendWhere(sql,where);
 		sql = sql.join(" ")+";";
+		sql = new AbstractSQL.String(sql);
 		this.sql.push(sql);
 		return sql;
 	},
@@ -204,6 +216,7 @@ AbstractSQL.prototype = {
 			sql.push("-- "+comment[i]);
 		}
 		sql = sql.join("\n");
+		sql = new AbstractSQL.String(sql);
 		this.sql.push(sql);
 		return sql;
 	},
@@ -241,6 +254,9 @@ AbstractSQL.util = {
 	 */
 	quotize : function(val) {
 		var ret,t=typeof val;
+		if(val instanceof AbstractSQL.String) {
+			return AbstractSQL.util.parenthesis(val.toString().replace(/;$/,""));
+		}
 		if(t == "string") return ["'",val,"'"].join("");
 		if(t == "boolean") return val?1:0;
 		if(val instanceof Array) {
@@ -373,7 +389,7 @@ AbstractSQL.Field.prototype = {
 AbstractSQL.Where = function(key,value,operator) {
 	this.key = key;
 	this.value = value;
-	this.operator = operator||AbstractSQL.Operator.EQ;
+	this.operator = operator||(value instanceof AbstractSQL.String?AbstractSQL.Operator.IN:AbstractSQL.Operator.EQ);
 }
 
 /* @class */
@@ -472,15 +488,32 @@ AbstractSQL.FieldType = {
 	BLOB:"blob"
 }
 
-/** @static
- * @class */
-AbstractSQL.Order = {
-	/** @member
-	 * @constant */
-	ASC : "asc",
-	/** @member
-	 * @constant */
-	DESC : "desc"
+/**
+ * @constructor
+ * @param {String} id
+ * @param {Boolean} desc
+ */
+AbstractSQL.Order = function(key,desc,lower) {
+	this.key = key;
+	this.desc = desc;
+	this.lower = lower;
+}
+
+AbstractSQL.Order.prototype = {
+	/**
+	 * @type String
+	 * @default false
+	 */
+	lower : false,
+	/**
+	 * @returns SQL String
+	 * @returns String
+	 */
+	toString : function() {
+		var sql = AbstractSQL.util.sqlcase("order by ",this.lower)+this.key;
+		if(this.desc) sql += AbstractSQL.util.sqlcase(" desc",this.lower)
+		return sql;
+	}
 }
 
 /** @static
@@ -541,6 +574,14 @@ AbstractSQL.Conflict = {
 	REPLACE : "replace"
 }
 
-
+/**
+ * @constructor
+ * @param {String} str
+ */
+AbstractSQL.String = function(str) {
+	this.toString = function() {
+		return str;
+	}
+}
 
 // __EOF__
