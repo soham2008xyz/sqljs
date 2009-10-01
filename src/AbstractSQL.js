@@ -510,8 +510,8 @@ AbstractSQL.Order.prototype = {
 	 * @returns String
 	 */
 	toString : function() {
-		var sql = AbstractSQL.util.sqlcase("order by ",this.lower)+this.key;
-		if(this.desc) sql += AbstractSQL.util.sqlcase(" desc",this.lower)
+		var sql = AbstractSQL.util.sqlcase("order by ",this.lower)+this.key+" ";
+		sql += AbstractSQL.util.sqlcase(this.desc?"desc":"asc",this.lower)
 		return sql;
 	}
 }
