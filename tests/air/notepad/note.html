@@ -1,0 +1,18 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" id="notepad-widget">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<link rev="made" title="Atsushi Nagase" href="http://ngsdev.org/">
+	<link rel="stylesheet" type="text/css" media="all" href="notepad.css">
+	<script type="text/javascript" src="scripts/air/AIRAliases.js" charset="utf-8"></script>
+	<title>Notepad</title>
+</head>
+<body>
+<form onsubmit="return false;" id="notepad-form">
+	<input type="text" name="title" id="notepad-title" onchange="window._opener.updateNote(window.id,true);" />
+	<textarea name="text" id="notepad-text"></textarea>
+</form>
+</body>
+</html>

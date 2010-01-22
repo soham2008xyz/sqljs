@@ -272,6 +272,21 @@ DBClass.Schema.prototype = {
 			var stmt = new air.SQLStatement();
 			stmt.sqlConnection = db.connection;
 			stmt.addEventListener(air.SQLEvent.RESULT, function(e){
+				if(isSelect) {
+					var res = stmt.getResult();
+					if(res==null||res.data==null) return callbackError();
+					callbackSuccess(
+						function(cb) {
+							for(var i=0;i<res.data.length;i++) {
+								cb.apply(this.item(i),[i,this]);
+							}
+						},
+						function(idx) { return res.data[idx]; },
+						res.data.length
+					)
+					return;
+				}
+				callbackSuccess();
 				
 			});
 			stmt.addEventListener(air.SQLErrorEvent.ERROR, function(e){
